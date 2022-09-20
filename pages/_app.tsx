@@ -1,8 +1,8 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import '../styles/globals.css';
 import Scaffold from '../components/Scaffold';
 import PageMetaData from '../components/PageMetaData';
+import '../styles/globals.css';
 
 /**
  * @author Ntavigwa Bashombe
@@ -13,7 +13,7 @@ import PageMetaData from '../components/PageMetaData';
  * @license MIT
  * @version 1.0.0
  */
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <>
       <PageMetaData />
