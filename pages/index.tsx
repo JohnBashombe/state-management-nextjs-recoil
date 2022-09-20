@@ -11,9 +11,9 @@ import React, { useState } from 'react';
  */
 const Home: NextPage = (): JSX.Element => {
   const [isOn, setIsOn] = useState<boolean>(false);
-  const [isActiveted, setIsActiveted] = useState<boolean>(false);
+  const [isActivated, setIsActivated] = useState<boolean>(false);
   console.log(isOn);
-  console.log(isActiveted);
+  console.log(isActivated);
 
   return (
     <div>
@@ -40,22 +40,22 @@ const Home: NextPage = (): JSX.Element => {
           <div
             className={
               `border-8 p-7 space-y-3 ` +
-              (isActiveted
+              (isActivated
                 ? 'border-gray-300 bg-white'
                 : 'border-gray-400 bg-black')
             }
           >
-            {isActiveted ? (
+            {isActivated ? (
               <span className='text-xl'>You switched me On!</span>
             ) : null}
           </div>
           <button
             onClick={() => {
-              setIsActiveted(!isActiveted);
+              setIsActivated(!isActivated);
             }}
             className='bg-gray-800 text-white text-sm font-bold py-2'
           >
-            {isActiveted ? 'Switch Me Off' : 'Click Me'}
+            {isActivated ? 'Switch Me Off' : 'Click Me'}
           </button>
         </div>
       </div>
