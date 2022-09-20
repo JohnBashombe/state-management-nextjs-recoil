@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import React, { useState } from 'react';
+// import InputText from '../components/InputText';
 /**
  * @author Ntavigwa Bashombe
  * @since 0.001
@@ -12,12 +13,31 @@ import React, { useState } from 'react';
 const Home: NextPage = (): JSX.Element => {
   const [isOn, setIsOn] = useState<boolean>(false);
   const [isActivated, setIsActivated] = useState<boolean>(false);
+  const [isYou, setIsYou] = useState<string>('');
+
+  // const [personId, setPersonId] = useState<Object>({
+  //   persons: [
+  //     { name: 'Joel', age: 18 },
+  //     { name: 'Floyd', age: 45 },
+  //   ],
+  // });
+
   console.log(isOn);
   console.log(isActivated);
+  console.log(isYou);
+
+  // const switchNameHandler = () => {
+  //   setPersonId({
+  //     persons: [
+  //       { name: 'Steph', age: 34 },
+  //       { name: 'Curry', age: 29 },
+  //     ],
+  //   });
+  // };
 
   return (
     <div>
-      <div className='text-gray-600 bg-gradient-to-tl from-cyan-600 font-bold justify-center flex flex-col-2'>
+      <div className='text-gray-600 font-bold'>
         <div className='flex flex-col space-y-2 w-1/3 p-8'>
           <div
             className={
@@ -25,11 +45,12 @@ const Home: NextPage = (): JSX.Element => {
               (isOn ? 'border-red-800 bg-red-300' : 'border-gray-400 bg-black')
             }
           >
-            {isOn ? <span>...we have switched On now!</span> : null}
+            {isOn ? <span>...we have switched On now!{isYou}</span> : null}
           </div>
           <button
             onClick={() => {
               setIsOn(!isOn);
+              setIsYou('new jojo');
             }}
             className='bg-gray-800 text-white text-sm font-bold py-2'
           >
