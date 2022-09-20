@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import React, { useState } from 'react';
-// import InputText from '../components/InputText';
+import InputText from '../components/InputText';
 /**
  * @author Ntavigwa Bashombe
  * @since 0.001
@@ -15,25 +15,27 @@ const Home: NextPage = (): JSX.Element => {
   const [isActivated, setIsActivated] = useState<boolean>(false);
   const [isYou, setIsYou] = useState<string>('');
 
-  // const [personId, setPersonId] = useState<Object>({
-  //   persons: [
-  //     { name: 'Joel', age: 18 },
-  //     { name: 'Floyd', age: 45 },
-  //   ],
-  // });
+  const [personId, setPersonId] = useState<{
+    persons: { name: string; age: number }[];
+  }>({
+    persons: [
+      { name: 'Joel', age: 18 },
+      { name: 'Floyd', age: 45 },
+    ],
+  });
 
   console.log(isOn);
   console.log(isActivated);
   console.log(isYou);
 
-  // const switchNameHandler = () => {
-  //   setPersonId({
-  //     persons: [
-  //       { name: 'Steph', age: 34 },
-  //       { name: 'Curry', age: 29 },
-  //     ],
-  //   });
-  // };
+  const switchNameHandler = () => {
+    setPersonId({
+      persons: [
+        { name: 'Steph', age: 34 },
+        { name: 'Curry', age: 29 },
+      ],
+    });
+  };
 
   return (
     <div>
@@ -77,6 +79,22 @@ const Home: NextPage = (): JSX.Element => {
             className='bg-gray-800 text-white text-sm font-bold py-2'
           >
             {isActivated ? 'Switch Me Off' : 'Click Me'}
+          </button>
+        </div>
+
+        <div className='p-8'>
+          <p>New code Added</p>
+          {personId.persons.map((person, index) => {
+            return (
+              <InputText age={person.age} name={person.name} key={index} />
+            );
+          })}
+
+          <button
+            onClick={switchNameHandler}
+            className='bg-black text-white px-4 py-2 my-5'
+          >
+            Update Array
           </button>
         </div>
       </div>
