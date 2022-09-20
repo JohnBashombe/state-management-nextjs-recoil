@@ -1,3 +1,5 @@
+// will be used later in the form validation
+
 import { IText } from '../libraries/types';
 
 export const TextField = ({ label, type, required }: IText): JSX.Element => {
