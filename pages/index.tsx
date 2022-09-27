@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import React, { useState } from 'react';
 import InputText from '../components/InputText';
+import Paragraph from '../components/Paragraph';
 /**
  * @author Ntavigwa Bashombe
  * @since 0.001
@@ -32,7 +33,7 @@ const Home: NextPage = (): JSX.Element => {
     setPersonId({
       persons: [
         { name: 'Steph', age: 34 },
-        { name: 'Curry', age: 29 },
+        { name: 'Tiana', age: 29 },
       ],
     });
   };
@@ -46,7 +47,7 @@ const Home: NextPage = (): JSX.Element => {
               `border-8 p-7 space-y-3 justify-center items-center ` +
               (isOn
                 ? 'border-red-800 bg-slate-100'
-                : 'border-gray-400 bg-black p-16')
+                : 'border-gray-400 bg-black')
             }
           >
             {isOn ? <span>...we have switched On now!{isYou}</span> : null}
@@ -69,7 +70,7 @@ const Home: NextPage = (): JSX.Element => {
               `border-8 p-7 space-y-3 ` +
               (isActivated
                 ? 'border-gray-300 bg-white'
-                : 'border-gray-400 bg-black p-20')
+                : 'border-gray-400 bg-black')
             }
           >
             {isActivated ? (
@@ -93,6 +94,7 @@ const Home: NextPage = (): JSX.Element => {
 
         <div className='p-8'>
           <p>New code Added</p>
+
           {personId.persons.map((person, index) => {
             return (
               <InputText age={person.age} name={person.name} key={index} />
@@ -100,15 +102,15 @@ const Home: NextPage = (): JSX.Element => {
           })}
 
           <button
-            onClick={switchNameHandler}
+            onClick={switchNameHandler} // I tried my best to load back the initial array by unsuccessful!
             className='bg-black text-white px-4 py-2 my-5'
           >
-            Switch Names
+            Update array
           </button>
         </div>
       </div>
-      <div>
-        <p>I am a Developer and I love to code.</p>
+      <div className='m-9 w-2/4'>
+        <Paragraph />
       </div>
     </div>
   );
