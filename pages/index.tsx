@@ -1,6 +1,8 @@
 import { NextPage } from 'next';
 import React, { useState } from 'react';
 import InputText from '../components/InputText';
+import Paragraph from '../components/Paragraph';
+
 /**
  * @author Ntavigwa Bashombe
  * @since 0.001
@@ -11,28 +13,55 @@ import InputText from '../components/InputText';
  * @version 1.0.0
  */
 const Home: NextPage = (): JSX.Element => {
+  const [isYou, setIsYou] = useState<string>('');
   const [isOn, setIsOn] = useState<boolean>(false);
   const [isActivated, setIsActivated] = useState<boolean>(false);
-  const [isYou, setIsYou] = useState<string>('');
 
-  const [personId, setPersonId] = useState<{
-    persons: { name: string; age: number }[];
+  type IType = { name: string; age: number };
+  const [group, setGroup] = useState<{
+    persons: IType[];
   }>({
     persons: [
-      { name: 'Joel', age: 18 },
-      { name: 'Floyd', age: 45 },
+      { name: 'Joel', age: 17 },
+      { name: 'Floyd', age: 19 },
     ],
   });
 
-  console.log(isOn);
-  console.log(isActivated);
-  console.log(isYou);
-
-  const switchNameHandler = () => {
-    setPersonId({
+  const resetAge = () => {
+    setGroup({
       persons: [
-        { name: 'Steph', age: 34 },
-        { name: 'Curry', age: 29 },
+        { name: 'Joel', age: 17 },
+        { name: 'Floyd', age: 19 },
+      ],
+    });
+  };
+
+  const addAge = () => {
+    setGroup({
+      persons: [
+        { name: 'Joel', age: group.persons[0].age + 1 },
+        { name: 'Floyd', age: group.persons[1].age + 1 },
+      ],
+    });
+  };
+
+  const reduceAge = () => {
+    setGroup({
+      persons: [
+        {
+          name: 'Joel',
+          age:
+            group.persons[0].age > 17
+              ? group.persons[0].age - 1
+              : group.persons[0].age,
+        },
+        {
+          name: 'Floyd',
+          age:
+            group.persons[0].age > 17
+              ? group.persons[0].age - 1
+              : group.persons[0].age,
+        },
       ],
     });
   };
@@ -46,7 +75,7 @@ const Home: NextPage = (): JSX.Element => {
               `border-8 p-7 space-y-3 justify-center items-center ` +
               (isOn
                 ? 'border-red-800 bg-slate-100'
-                : 'border-gray-400 bg-black p-16')
+                : 'border-gray-400 bg-black')
             }
           >
             {isOn ? <span>...we have switched On now!{isYou}</span> : null}
@@ -69,7 +98,7 @@ const Home: NextPage = (): JSX.Element => {
               `border-8 p-7 space-y-3 ` +
               (isActivated
                 ? 'border-gray-300 bg-white'
-                : 'border-gray-400 bg-black p-20')
+                : 'border-gray-400 bg-black')
             }
           >
             {isActivated ? (
@@ -91,24 +120,37 @@ const Home: NextPage = (): JSX.Element => {
           </button>
         </div>
 
-        <div className='p-8'>
+        <div className='p-8 space-x-4'>
           <p>New code Added</p>
-          {personId.persons.map((person, index) => {
-            return (
-              <InputText age={person.age} name={person.name} key={index} />
-            );
+
+          {group.persons.map((group, index) => {
+            return <InputText age={group.age} name={group.name} key={index} />;
           })}
 
           <button
-            onClick={switchNameHandler}
+            onClick={resetAge}
             className='bg-black text-white px-4 py-2 my-5'
           >
-            Switch Names
+            Reset Age
+          </button>
+
+          <button
+            onClick={addAge}
+            className='bg-black text-white px-4 py-2 my-5'
+          >
+            Be 1 Year Old
+          </button>
+
+          <button
+            onClick={reduceAge}
+            className='bg-black text-white px-4 py-2 my-5'
+          >
+            Be 1 Year Young
           </button>
         </div>
       </div>
-      <div>
-        <p>I am a Developer and I love to code.</p>
+      <div className='m-9 w-2/4'>
+        <Paragraph />
       </div>
     </div>
   );
