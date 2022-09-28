@@ -23,7 +23,7 @@ const Home: NextPage = (): JSX.Element => {
   }>({
     persons: [
       { name: 'Joel', age: 17 },
-      { name: 'Floyd', age: 19 },
+      { name: 'Floyd', age: 18 },
     ],
   });
 
@@ -31,7 +31,7 @@ const Home: NextPage = (): JSX.Element => {
     setGroup({
       persons: [
         { name: 'Joel', age: 17 },
-        { name: 'Floyd', age: 19 },
+        { name: 'Floyd', age: 18 },
       ],
     });
   };
