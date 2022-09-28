@@ -2,7 +2,6 @@ import { NextPage } from 'next';
 import React, { useState } from 'react';
 import InputText from '../components/InputText';
 import Paragraph from '../components/Paragraph';
-
 /**
  * @author Ntavigwa Bashombe
  * @since 0.001
