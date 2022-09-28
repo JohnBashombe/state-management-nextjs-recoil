@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import React, { useState } from 'react';
 import InputText from '../components/InputText';
 import Paragraph from '../components/Paragraph';
+
 /**
  * @author Ntavigwa Bashombe
  * @since 0.001
@@ -12,28 +13,55 @@ import Paragraph from '../components/Paragraph';
  * @version 1.0.0
  */
 const Home: NextPage = (): JSX.Element => {
+  const [isYou, setIsYou] = useState<string>('');
   const [isOn, setIsOn] = useState<boolean>(false);
   const [isActivated, setIsActivated] = useState<boolean>(false);
-  const [isYou, setIsYou] = useState<string>('');
 
-  const [personId, setPersonId] = useState<{
-    persons: { name: string; age: number }[];
+  type IType = { name: string; age: number };
+  const [group, setGroup] = useState<{
+    persons: IType[];
   }>({
     persons: [
-      { name: 'Joel', age: 18 },
-      { name: 'Floyd', age: 45 },
+      { name: 'Joel', age: 17 },
+      { name: 'Floyd', age: 19 },
     ],
   });
 
-  console.log(isOn);
-  console.log(isActivated);
-  console.log(isYou);
-
-  const switchNameHandler = () => {
-    setPersonId({
+  const resetAge = () => {
+    setGroup({
       persons: [
-        { name: 'Steph', age: 34 },
-        { name: 'Tiana', age: 29 },
+        { name: 'Joel', age: 17 },
+        { name: 'Floyd', age: 19 },
+      ],
+    });
+  };
+
+  const addAge = () => {
+    setGroup({
+      persons: [
+        { name: 'Joel', age: group.persons[0].age + 1 },
+        { name: 'Floyd', age: group.persons[1].age + 1 },
+      ],
+    });
+  };
+
+  const reduceAge = () => {
+    setGroup({
+      persons: [
+        {
+          name: 'Joel',
+          age:
+            group.persons[0].age > 17
+              ? group.persons[0].age - 1
+              : group.persons[0].age,
+        },
+        {
+          name: 'Floyd',
+          age:
+            group.persons[0].age > 17
+              ? group.persons[0].age - 1
+              : group.persons[0].age,
+        },
       ],
     });
   };
@@ -92,20 +120,32 @@ const Home: NextPage = (): JSX.Element => {
           </button>
         </div>
 
-        <div className='p-8'>
+        <div className='p-8 space-x-4'>
           <p>New code Added</p>
 
-          {personId.persons.map((person, index) => {
-            return (
-              <InputText age={person.age} name={person.name} key={index} />
-            );
+          {group.persons.map((group, index) => {
+            return <InputText age={group.age} name={group.name} key={index} />;
           })}
 
           <button
-            onClick={switchNameHandler} // I tried my best to load back the initial array by unsuccessful!
+            onClick={resetAge}
             className='bg-black text-white px-4 py-2 my-5'
           >
-            Update array
+            Reset Age
+          </button>
+
+          <button
+            onClick={addAge}
+            className='bg-black text-white px-4 py-2 my-5'
+          >
+            Be 1 Year Old
+          </button>
+
+          <button
+            onClick={reduceAge}
+            className='bg-black text-white px-4 py-2 my-5'
+          >
+            Be 1 Year Young
           </button>
         </div>
       </div>
