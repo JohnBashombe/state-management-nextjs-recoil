@@ -25,7 +25,7 @@ const InputText = ({ name, age }: { name: string; age: number }) => {
         Hi,I'm {name} and I am {age} years old!!
       </p>
       <p className='font-normal'>
-        Hello, I'm {name} by name and I am {age} years old!!
+        Hello World!, I'm {name} by name and I am {age} years old.
       </p>
     </div>
   );
