@@ -106,7 +106,10 @@ const Home: NextPage = (): JSX.Element => {
                 You switched me On! Lorem ipsum dolor sit amet consectetur
                 adipisicing elit. Ducimus ipsa molestias libero nemo, ipsam eius
                 animi fugiat enim saepe sed fuga, alias quam eum modi. Quo enim
-                numquam ex nam.
+                numquam ex nam. You switched me On! Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Ducimus ipsa molestias libero
+                nemo, ipsam eius animi fugiat enim saepe sed fuga, alias quam
+                eum modi. Quo enim numquam ex nam.
               </span>
             ) : null}
           </div>
@@ -121,7 +124,7 @@ const Home: NextPage = (): JSX.Element => {
         </div>
 
         <div className='p-8 space-x-4'>
-          <p>New code Added</p>
+          <p>change by clicking down</p>
 
           {group.persons.map((group, index) => {
             return <InputText age={group.age} name={group.name} key={index} />;
